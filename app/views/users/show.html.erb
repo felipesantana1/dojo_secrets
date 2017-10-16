@@ -1,0 +1,32 @@
+<br>
+<a href="/secrets/home">Secrets Page!</a>
+
+<h1>Hello <%=current_user.name%>!</h1>
+<b><p>Tell us your secrets!</p></b>
+
+<form action="/secrets" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+New Secret:
+<input type="text" name="secret" id="secret">
+<input type="submit" value="Create Secret">
+</form>
+
+<ul>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error|%>
+        <li><b><%= error %><b></li>
+    <% end %>
+<% end %>
+</ul>
+
+<h3>Secrets!</h3>
+
+<% @secret.each do |secret|%>
+    <%= secret.secret %>
+    <form action="/secrets/destroy/<%= secret.id %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+    </form>
+<% end %>
+

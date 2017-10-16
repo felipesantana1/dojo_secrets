@@ -1,0 +1,15 @@
+<h1>Welcome!</h1> <a href="/users/new">Register!</a>
+
+<h3>Login Here</h3>
+<form action='/sessions/new' method='post'>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    Email:
+    <input type="text" name="email" id="email">
+    Password:
+    <input type="password" name="password" id="password">
+    <input type="submit" value="Sign in">
+</form>
+
+<% if flash[:errors] %>
+    <%= flash[:errors] %>
+<% end %>
