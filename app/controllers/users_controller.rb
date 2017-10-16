@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @secret = User.find(session[:id]).secrets
+    @likes = Like.all
   end
 
   def edit

@@ -2,7 +2,6 @@ class SecretsController < ApplicationController
 
   def home
     @secret = Secret.all
-    @likes = Like.all
   end
 
   def create

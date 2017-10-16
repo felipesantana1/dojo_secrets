@@ -23,10 +23,20 @@ New Secret:
 
 <% @secret.each do |secret|%>
     <%= secret.secret %>
+    <br>
     <form action="/secrets/destroy/<%= secret.id %>" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="Delete">
     </form>
+    <br>
 <% end %>
-
+<br>
+<h3> Liked Secrets </h3>
+<ul>
+<% @likes.each do |like| %>
+    <% if like.user.id == current_user.id %>
+    <li><%= like.secret.secret %></li>
+    <% end %>
+<% end %>
+</ul>
