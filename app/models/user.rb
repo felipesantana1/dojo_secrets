@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
 
   has_many :secrets
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_secrets, source: :secrets
 
   after_validation :downcase_email
